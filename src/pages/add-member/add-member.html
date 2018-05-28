@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Add Member
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-searchbar (change)='search($event)'></ion-searchbar>
+  </ion-list>
+  <button ion-item *ngIf="searchUserDetails" (click)="addMember(searchUserDetails)">
+    <ion-avatar item-left>
+      <img [src]='searchUserDetails.imageUrl'>
+    </ion-avatar>
+    <h2>{{ searchUserDetails.providerName}}</h2>
+    <ion-icon name='add' item-right></ion-icon>
+  </button>
+</ion-content>

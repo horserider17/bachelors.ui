@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title style='display: inline-block !important'>
+      Balance Sheet
+    </ion-title>
+    <ion-icon name='person-add' (click)='goToAddMembers()'></ion-icon>
+    <label></label>
+    <ion-icon name='add' (click)='goToCreateBalanceSheet()'></ion-icon>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let blncSheet of balanceSheetDetails" (click)='goToBalanceSheet(blncSheet.BalanceSheetId)'>
+      <h2>{{blncSheet.BalanceSheetName}}</h2>
+    </button>
+  </ion-list>
+</ion-content>
+
+<!-- goToAddMembers() -->
