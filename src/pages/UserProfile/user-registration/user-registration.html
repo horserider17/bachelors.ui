@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="!isUserLoggedIn">
+  <div class="login-button" *ngIf="!isUserLoggedIn">
       <button ion-button round (click)="loginWithGooglePlus()">
           <label>Login with</label><img src="assets/imgs/googleplus.png">
       </button>
