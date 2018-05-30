@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_BASE_URL, API, USERPROFILE, GETUSERPROFILE, SEARCHUSERS, REGISTERUSER } from '../../shared/constants/web.api.constants';
+import { API_BASE_URL, API, USERPROFILE, GETUSERPROFILE, SEARCHUSERS, REGISTERUSER }
+        from '../../shared/constants/web.api.constants';
 
 @Injectable()
 export class UserprofileProvider {
@@ -8,7 +9,7 @@ export class UserprofileProvider {
   constructor(public http: HttpClient) {
   }
 
-  public RegisterUseer(userDetails: any) {
+  public RegisterUser(userDetails: any) {
     let params =
       {
         "FirstName": userDetails.familyName,
