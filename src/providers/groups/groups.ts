@@ -1,40 +1,34 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs';
+import { API_BASE_URL, API, CREATEGROUP, GETGROUP, ADDMEMBER, GETMEMBERS } from '../../shared/constants/web.api.constants';
 
-/*
-  Generated class for the GroupsProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class GroupsProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello GroupsProvider Provider');
   }
 
   public GetGroups(providerId: any) {
     let paramrters = new HttpParams();
     paramrters = paramrters.append('providerId', providerId);
-    return this.http.get<any>('http://192.168.0.25/BachelorAPI/api/CreateGroup/GetGroup',{params:paramrters} )
-                    .map(res => res.Data)
+    return this.http.get<any>(API_BASE_URL + API + CREATEGROUP + GETGROUP, { params: paramrters })
+      .map(res => res.Data)
   }
 
-  public CreateGroup(groupName: any, providerId:any){
+  public CreateGroup(groupName: any, providerId: any) {
     let paramrters = new HttpParams();
     paramrters = paramrters.append('providerId', providerId);
     paramrters = paramrters.append('groupName', groupName.groupName);
-    return this.http.post<any>('http://192.168.0.25/BachelorAPI/api/CreateGroup/CreateGroup', '',{params:paramrters})
-                    .map(res => res.Data)
+    return this.http.post<any>(API_BASE_URL + API + CREATEGROUP + CREATEGROUP, '', { params: paramrters })
+      .map(res => res.Data)
   }
 
-  public AddMembersToGroup(userData:any,providerGroupid: any){
+  public AddMembersToGroup(userData: any, providerGroupid: any) {
     let paramrters = new HttpParams();
     paramrters = paramrters.append('memberProviderId', userData.providerId);
     paramrters = paramrters.append('adminGroupId', providerGroupid);
-    return this.http.post<any>('http://192.168.0.25/BachelorAPI/api/CreateGroup/AddMember', '',{params:paramrters})
-                    .map(res => res.Data)
+    return this.http.post<any>(API_BASE_URL + API + CREATEGROUP + ADDMEMBER, '', { params: paramrters })
+      .map(res => res.Data)
   }
 }

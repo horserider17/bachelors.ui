@@ -2,23 +2,22 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs';
 import { Observable } from 'rxjs/Observable';
-/*
-  Generated class for the BalanceSheetProvider provider.
+import {
+  API_BASE_URL, API, TRANSACTIONS, CREATEBALANCESHEET, CREATEITEM,
+  GETEXPENDITURE, GETINDIVIDUALEXPENDITURE, GETBALANCESHEET
+}
+  from '../../shared/constants/web.api.constants';
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class BalanceSheetProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello BalanceSheetProvider Provider');
   }
 
-  public GetBalanceSheet(id: any):Observable<any>  {
+  public GetBalanceSheet(id: any): Observable<any> {
     let params = new HttpParams().set('providerGroupId', id);
     return this.http
-      .get<any>('http://192.168.0.25/BachelorAPI/api/Transactions/GetBalanceSheet', { params: params })
+      .get<any>(API_BASE_URL + API + TRANSACTIONS + GETBALANCESHEET, { params: params })
       .map(res => res.Data)
   }
 
@@ -29,11 +28,11 @@ export class BalanceSheetProvider {
     paramrters = paramrters.append('providerGroupId', providerGroupId);
 
     return this.http
-      .post<any>('http://192.168.0.25/BachelorAPI/api/Transactions/CreateBalanceSheet','', { params: paramrters })
+      .post<any>(API_BASE_URL + API + TRANSACTIONS + CREATEBALANCESHEET, '', { params: paramrters })
       .map(res => res.Data)
   }
 
-  public AddItem(data:any, userData: any){
+  public AddItem(data: any, userData: any) {
     let paramrters = new HttpParams();
     paramrters = paramrters.append('itemName', data.itemName);
     paramrters = paramrters.append('cost', data.itemCost);
@@ -42,17 +41,17 @@ export class BalanceSheetProvider {
     paramrters = paramrters.append('grpBlncId', userData.grupBlnceId);
 
     return this.http
-      .post<any>('http://192.168.0.25/BachelorAPI/api/Transactions/CreateItem','', { params: paramrters })
+      .post<any>(API_BASE_URL + API + TRANSACTIONS + CREATEITEM, '', { params: paramrters })
       .map(res => res.Data)
   }
 
-  public GetIndividualExpenditure(data: any){
+  public GetIndividualExpenditure(data: any) {
     let paramrters = new HttpParams();
     paramrters = paramrters.append('providerGroupId', data.providerGroupId);
     paramrters = paramrters.append('grpBlncId', data.grupBlnceId);
 
     return this.http
-      .get<any>('http://192.168.0.25/BachelorAPI/api/Transactions/GetIndividualExpenditure',{ params: paramrters })
+      .get<any>(API_BASE_URL + API + TRANSACTIONS + GETINDIVIDUALEXPENDITURE, { params: paramrters })
       .map(res => res.Data)
   }
 }
