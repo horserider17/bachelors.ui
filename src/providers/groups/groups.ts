@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs';
-import { API_BASE_URL, API, CREATEGROUP, GETGROUP, ADDMEMBER, GETMEMBERS } from '../../shared/constants/web.api.constants';
+import { API_BASE_URL, API, CREATEGROUP, GETGROUP, ADDMEMBER, GETMEMBERS, CREATEGROUPURL } from '../../shared/constants/web.api.constants';
 
 @Injectable()
 export class GroupsProvider {
@@ -20,7 +20,7 @@ export class GroupsProvider {
     let paramrters = new HttpParams();
     paramrters = paramrters.append('providerId', providerId);
     paramrters = paramrters.append('groupName', groupName.groupName);
-    return this.http.post<any>(API_BASE_URL + API + CREATEGROUP + CREATEGROUP, '', { params: paramrters })
+    return this.http.post<any>(API_BASE_URL + API + CREATEGROUP + CREATEGROUPURL, '', { params: paramrters })
       .map(res => res.Data)
   }
 
