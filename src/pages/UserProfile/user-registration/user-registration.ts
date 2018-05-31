@@ -28,8 +28,8 @@ isUserLoggedIn:any = false;
       this.userInfo=res;
       this.isUserLoggedIn=true;
 
-      this.userprofileProvider.RegisterUser(this.userInfo).subscribe(response => {
-        this.navCtrl.setRoot(GroupsPage,{response});
+      this.userprofileProvider.RegisterUser(this.userInfo).subscribe(userData => {
+        this.navCtrl.setRoot(GroupsPage,{userData});
       })
       }).catch( err => console.log(err));
    }

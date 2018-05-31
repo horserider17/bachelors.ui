@@ -41,7 +41,9 @@ $colors: (
   dark:       #222
 );
 
-
+$alert-md-message-text-color:red;
+$alert-md-message-font-size: 11px;
+$alert-md-message-padding-bottom: 11px;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

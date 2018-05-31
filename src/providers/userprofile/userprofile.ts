@@ -11,13 +11,13 @@ export class UserprofileProvider {
 
   public RegisterUser(userDetails: any) {
     let params =
-      {
-        "FirstName": userDetails.familyName,
-        "LastName": userDetails.givenName,
-        "Email": userDetails.email,
-        "UserId": userDetails.userId, //"117456490412538276901"
-        "ImageUrl": userDetails.imageUrl
-      }
+    {
+      "FirstName": userDetails.familyName,
+      "LastName": userDetails.givenName,
+      "Email": userDetails.email,
+      "UserId": userDetails.userId, //"117456490412538276901"
+      "ImageUrl": userDetails.imageUrl
+    }
 
     return this.http.post<any>(API_BASE_URL + API + USERPROFILE + REGISTERUSER, params)
       .map(res => res.Data)

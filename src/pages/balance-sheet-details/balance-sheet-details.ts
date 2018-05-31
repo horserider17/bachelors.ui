@@ -77,17 +77,20 @@ GetIndividualExpenditure()
       ],
       buttons: [{
           text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-              console.log('Cancel clicked');
-          }
+          role: 'cancel'
       },
       {
           text: 'Save',
           handler: data => {
-            this.blncSheetProvider.AddItem(data,this.userData).subscribe(res => {
-              this.GetIndividualExpenditure();
-            });
+            if(data.itemName == '' || data.itemCost == ''){
+              alert.setMessage('All fields are mandatory');
+              return false;
+            }
+            else{
+              this.blncSheetProvider.AddItem(data,this.userData).subscribe(res => {
+                this.GetIndividualExpenditure();
+              });
+            }
           }
       }]
   });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, } from 'ionic-angular';
 
 import { BalanceSheetDetailsPage } from '../balance-sheet-details/balance-sheet-details';
 import { AddMemberPage } from '../add-member/add-member';
@@ -12,87 +12,91 @@ import { CreateBalanceSheetPopUp } from '../PopUps/CreateBalanceSheetPopUp';
 @Component({
   selector: 'page-balance-sheet',
   templateUrl: 'balance-sheet.html',
-  providers:[BalanceSheetProvider]
+  providers: [BalanceSheetProvider]
 })
 export class BalanceSheetPage {
-public balanceSheetDetails: any;
-public providerGroupId: number;
-public providerId : number;
-public grupBlnceId: number;
+  public balanceSheetDetails: any;
+  public providerGroupId: number;
+  public providerId: number;
+  public grupBlnceId: number;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public blncSheetProvider: BalanceSheetProvider, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public blncSheetProvider: BalanceSheetProvider,
     public alertCtrl: AlertController,
     public createBlncSheetPop: CreateBalanceSheetPopUp
   ) {
-  
+
     this.providerGroupId = navParams.get('providerGroupId');
     this.providerId = navParams.get('providerId');
     this.GetBalanceSheet();
   }
 
-  GetBalanceSheet(){
-    this.blncSheetProvider.GetBalanceSheet(this.providerGroupId ).subscribe(data => {
+  GetBalanceSheet() {
+    this.blncSheetProvider.GetBalanceSheet(this.providerGroupId).subscribe(data => {
       this.balanceSheetDetails = data;
-      console.log('verify changes',this.balanceSheetDetails)
+      console.log('verify changes', this.balanceSheetDetails)
     })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BalanceSheetPage');
   }
-  goToBalanceSheet(grupblncId: number){
+  goToBalanceSheet(grupblncId: number) {
     let providerGrupId = this.providerGroupId;
     let providerId = this.providerId;
-    this.navCtrl.push(BalanceSheetDetailsPage, {providerId, providerGrupId, grupblncId});
+    this.navCtrl.push(BalanceSheetDetailsPage, { providerId, providerGrupId, grupblncId });
   }
-  goToAddMembers(){
+  goToAddMembers() {
     let providerGroupId = this.providerGroupId;
-    this.navCtrl.push(AddMemberPage,{providerGroupId});
+    this.navCtrl.push(AddMemberPage, { providerGroupId });
   }
-   createBalanceSheetPopUp(){
+  createBalanceSheetPopUp() {
     let providerGrupId = this.providerGroupId;
     //this.navCtrl.push(CreateBalanceSheetPage,{providerGrupId});
-   //let response = this.createBlncSheetPop.createBalanceSheetPopUp(this.providerGroupId);
-  //  console.log('response', response);
-  //   if(response)
-  //   {
-  //     this.GetBalanceSheet();
-  //   }
+    //let response = this.createBlncSheetPop.createBalanceSheetPopUp(this.providerGroupId);
+    //  console.log('response', response);
+    //   if(response)
+    //   {
+    //     this.GetBalanceSheet();
+    //   }
   }
 
   goToCreateBalanceSheet() {
     let alert = this.alertCtrl.create({
-        title: 'Expense Sheet',
-        subTitle: 'Create your new expense sheet',
-        inputs: [
-            {
-                name: 'sheetName',
-                placeholder: 'expensesheet'
-            },
-            {
-                name: 'totalAmount',
-                placeholder: 'amount',
-                type: 'number'
-            }
-        ],
-        buttons: [{
-            text: 'Cancel',
-            role: 'cancel',
-            handler: () => {
-                console.log('Cancel clicked');
-            }
+      title: 'Expense Sheet',
+      subTitle: 'Create your new expense sheet',
+      message: '',
+      inputs: [
+        {
+          name: 'sheetName',
+          placeholder: 'expensesheet'
         },
         {
-            text: 'Save',
-            handler: data => {
-                this.blncSheetProvider.CreateBalanceSheet(data, this.providerGroupId).subscribe(res =>{
-                  this.GetBalanceSheet();
-                })
-            }
-        }]
+          name: 'totalAmount',
+          placeholder: 'amount',
+          type: 'number'
+        }
+      ],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          if (data.sheetName == '' || data.totalAmount == '') {
+            alert.setMessage('All fields are mandatory');
+            return false;
+          }
+          else {
+            this.blncSheetProvider.CreateBalanceSheet(data, this.providerGroupId).subscribe(res => {
+              this.GetBalanceSheet();
+            });
+          }
+        }
+      }]
     });
     alert.present();
-}
+  }
 }

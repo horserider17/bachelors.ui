@@ -1,11 +1,11 @@
-<ion-header color='primary'>
-  <ion-navbar>
+<ion-header >
+  <ion-navbar color='primary'>
     <ion-title style='display: inline-block !important'>
       Balance Sheet
     </ion-title>
-    <ion-icon name='person-add' (click)='goToAddMembers()'></ion-icon>
+    <ion-icon name='add' class="add-sheet plusone" (click)='goToCreateBalanceSheet()'></ion-icon>
+    <ion-icon name='person-add' class="add-sheet " (click)='goToAddMembers()'></ion-icon>
     <label></label>
-    <ion-icon name='add' (click)='goToCreateBalanceSheet()'></ion-icon>
   </ion-navbar>
 </ion-header>
 

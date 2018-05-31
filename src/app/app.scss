@@ -17,3 +17,11 @@
 .scroll-content {
     background-color: #f5f5f5;
 }
+
+.flex-right {
+    justify-content: flex-end;
+    float: right;
+    padding-right: 15px;
+    position: relative;
+    top: 4px;
+  }
