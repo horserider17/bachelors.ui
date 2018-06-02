@@ -57,14 +57,21 @@ export class AddMemberPage {
   }
 
   addMember(searchUserDetails: any){
-     this.groupsProvider.AddMembersToGroup(searchUserDetails,this.providerGroupId).subscribe(res =>{
+    console.log(searchUserDetails);
+    this.groupsProvider.AddMembersToGroup(searchUserDetails,this.providerGroupId).subscribe(res =>{
+     if(res =='Error')
+     {
+      this.presentToast('User already exists in group');
+     }
+     else{
       this.searchUserDetails = null;
-      this.presentToast();
+      this.presentToast('User added successfully');
+     }
      })
   }
-  presentToast() {
+  presentToast(messageText:any) {
     let toast = this.toastCtrl.create({
-      message: 'User added successfully',
+      message: messageText,
       duration: 3000,
       position: 'middle'
     });
