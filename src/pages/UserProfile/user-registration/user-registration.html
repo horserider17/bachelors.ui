@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-navbar color='primary'>
-    <ion-title>Bachelors Book</ion-title>
+  <ion-navbar color='seagreen'>
+    <ion-title text-center>Bachelors Expenditure Book</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding >
+  <div class="fixed-content" style="background-image:url('assets/imgs/background.jpg');background-size:cover;left: -343px">
+  </div>
   <div class="login-button" *ngIf="!isUserLoggedIn">
-      <button ion-button round (click)="loginWithGooglePlus()">
-          <label>Login with</label><img src="assets/imgs/googleplus.png">
+      <button ion-button color="seagreen" ion-button round (click)="loginWithGooglePlus()">
+          <label>Login with gmail</label><img style="max-width: 16%" src="assets/imgs/gmailicon.jpg">
       </button>
     </div>
 </ion-content>
+

@@ -1,5 +1,5 @@
 
-export const API_BASE_URL = 'http://bachelors.somee.com/';
+export const API_BASE_URL = 'http://www.bachelors.somee.com/';
 export const API = 'api/';
 
 export const CREATEGROUP = 'CreateGroup/';

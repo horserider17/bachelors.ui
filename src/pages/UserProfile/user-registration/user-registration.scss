@@ -1,20 +1,30 @@
 page-user-registration {
-.button {
-    width: 250px; 
-    height: 50px;
-    text-transform: capitalize
-}
-
-.login-button {
-    position: absolute;
-    top: 50%;
-    margin-top: -25px;
-    left: 50%;
-    margin-left: -125px;
-
-    img {
-        margin-left: 20px;
+    .button {
+        width: 250px; 
+        height: 50px;
+        text-transform: capitalize
     }
-}
-
-}
+    
+    .login-button {
+        position: absolute;
+        bottom: 7%;
+        margin-top: -25px;
+        left: 50%;
+        margin-left: -125px;
+        color: green;
+        img {
+            margin-left: 20px;
+        }
+    }
+    
+    .login-background {
+      background-image: url('../assets/imgs/book.jpg');
+      width: 100%;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    
+    }
+    
+    
